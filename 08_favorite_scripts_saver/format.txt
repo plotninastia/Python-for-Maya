@@ -1,0 +1,24 @@
+widgets = {
+
+    'widget_name': {
+        command: '',
+        iconPath: ''
+    },
+
+    'quick rename tool': {
+        command: 'Quick_rename_tool ()',
+        iconPath: 'C:/Users/admin\Dropbox (Личный)/PROJECTS_ONGOING/Python_For_Maya_Anim/week8/draw.png'
+
+    }
+
+
+
+
+}
+
+
+
+
+
+{u'NgSkin': {u'command': u'', u'iconpath': u'C:/Users/admin/Documents/maya/2020/prefs/icons/ngskin.png'},
+u'RenameTool': {u'command': u'', u'iconpath': u'C:/Users/admin\\Dropbox (\u041b\u0438\u0447\u043d\u044b\u0439)/PROJECTS_ONGOING/Python_For_Maya_Anim/week8/draw.png'}}
