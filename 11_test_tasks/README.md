@@ -69,3 +69,6 @@ These two widgets must be instances of the same class.
 They should stand out against the background of the dialog box (change bg color of them).
 
 When user clicks on one widget, the other widget should change color to a random one.
+
+
+![6task](https://user-images.githubusercontent.com/108269822/212973169-a339b307-921e-4bfb-99cc-069ac20f75bd.gif)
