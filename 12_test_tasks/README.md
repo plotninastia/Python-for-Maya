@@ -1,6 +1,3 @@
-Here are tasks from the test.
-
-
 Task 1. Python
 Find a word with maximum length. a function should take any number of arguments.
 
