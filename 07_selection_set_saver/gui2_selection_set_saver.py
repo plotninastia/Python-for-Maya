@@ -274,15 +274,12 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
         self.plus_button.setObjectName("PlusButton")
         self.plus_button.setStyleSheet(button3Style)
         self.plus_button.clicked.connect(self.on_button_plus_clicked)
-        # self.plus_button.setFixedWidth(150)
-        # self.plus_button.setMinimumWidth(50)
         self.add_layout.addWidget(self.plus_button)
 
         self.line = QtWidgets.QFrame()
         self.line.setObjectName("line")
         self.line.setGeometry(QRect(60, 110, 751, 20))
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
-        # self.line.setLineWidth(0)
         self.line.setStyleSheet(setLineSheet)
         self.scroll_layout.addWidget(self.line)
 

@@ -38,7 +38,6 @@ class ButtonWidget(QtWidgets.QWidget):
     def __init__(self, label="TEST", command="", iconpath=""):
         super(ButtonWidget, self).__init__()
 
-        # self.setObjectName("ButtonWidget")
         self.setFixedSize(200, 52)
 
         #bg color
@@ -51,9 +50,6 @@ class ButtonWidget(QtWidgets.QWidget):
         self.mainLayout = QtWidgets.QHBoxLayout()
         self.mainLayout.setAlignment(QtCore.Qt.AlignLeft)
         self.setLayout(self.mainLayout)
-
-        # self.addCommand()
-        # self.addIconpath()
 
         self.command = command
         self.iconpath = iconpath
@@ -75,9 +71,6 @@ class ButtonWidget(QtWidgets.QWidget):
             self.icon_label = QtWidgets.QLabel(self)
             self.pixmap = QtGui.QPixmap(self.iconpath).scaled(35, 35, QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)
             self.icon_label.setPixmap(self.pixmap)
-            # self.mainLayout.addWidget(self.icon_label)
-            # self.icon_label.setFixedSize(40, 40)
-            # self.pixmap.scaled(20, 20)
             self.mainLayout.insertWidget(0, self.icon_label)
 
     def getLabel(self):
@@ -98,7 +91,6 @@ class ButtonWidget(QtWidgets.QWidget):
         mimeData.setText(self.label.text())
         mimeData.setCommand(self.command)
         mimeData.setIconpath(self.iconpath)
-        # mimeData.setPixmapIcon(self.iconpath)
 
         self.pixmap = self.grab()
         painter = QtGui.QPainter(self.pixmap)
@@ -162,7 +154,6 @@ class FieldWidget(QtWidgets.QWidget):
         for i in range(self.scroll_layout.count()):
             wdg = self.scroll_layout.itemAt(i).widget()
             label = self.scroll_layout.itemAt(i).widget().getLabel()
-            # self.all_widgets[i] = self.scroll_layout.itemAt(i).widget().getLabel()
             all_values = {}
             all_values['command'] = wdg.getCommand()
             all_values['iconpath'] = wdg.getIconpath()
@@ -170,30 +161,7 @@ class FieldWidget(QtWidgets.QWidget):
 
         return self.all_widgets
 
-        # for key in self.all_widgets:
-        #     print(key, self.all_widgets[key])
-
-
-            # for i in self.all_widgets:
-        #     print(self.all_widgets(i))
-
-        # for i in range(self.scroll_layout.count()):
-        #     item = self.scroll_layout.itemAt(i).widget()
-        #     if isinstance(item, ButtonWidget):
-        #         # self.widgets_info = {}
-        #         print('ok')
-        #         print(item)
-
-
-
     def feedButtons(self):
-        # for i in range(10):
-        #     button = ButtonWidget()
-        #     button.addLabel(t = "Button {}".format(i))
-        #     self.buttonsList.append(button)
-        #     self.scroll_layout.addWidget(button)
-
-
         ngskin_btn = ButtonWidget()
         ngskin_btn.addLabel("NgSkin")
         ngskin_btn.addCommand("import ngSkinTools2; ngSkinTools2.open_ui()")
@@ -281,27 +249,19 @@ class MyDDWnd(MayaQWidgetBaseMixin, QtWidgets.QDialog):
 
 
         self.v_layout = QtWidgets.QHBoxLayout()
-        # self.v_layout.setSpacing(1)
-        # self.v_layout.setContentsMargins(0, 5, 0, 0)
         self.main_layout.addLayout(self.v_layout)
 
         self.savebtn = QtWidgets.QPushButton("Save")
         self.v_layout.setAlignment(QtCore.Qt.AlignBottom)
         self.savebtn.setMinimumHeight(40)
         self.savebtn.clicked.connect(self.save_widgets)
-        # self.savebtn.setContentsMargins(10, 0, 10, 0)
         self.v_layout.addWidget(self.savebtn)
 
 
     def save_widgets(self):
         self.all_widgets_json_data = self.w2.return_containing_widgets()
 
-        # for key in self.all_widgets_json_data:
-        #     print(key, self.all_widgets_json_data[key])
-
         self.path_to_file = cmds.fileDialog2(fileFilter="*.json", dialogStyle=2, caption="Save")[0]
-        # global path_to_file
-        # path_to_file = cmds.fileDialog2(fileFilter="*.json", dialogStyle=2, caption="Save")[0]
 
         with open(self.path_to_file, 'w') as outfile:
             json.dump(self.all_widgets_json_data, outfile, indent=4)
@@ -316,16 +276,11 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
     def __init__(self, parent=None):
         super(ChooseWindow, self).__init__(parent=parent)
 
-# class ChooseWindow(MayaQWidgetBaseMixin, QtWidgets.QDialog):
-#     def __init__(self):
-#         super(ChooseWindow, self).__init__()
-
         self.setObjectName("chooseWindow")
         self.setWindowTitle("Fav scripts")
         self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         self.setSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         self.setMinimumSize(100, 50)
-        # self.resize(300, 500)
         self.resize(250, 70)
 
         self.main_layout = QtWidgets.QVBoxLayout()
@@ -334,7 +289,6 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
         self.setLayout(self.main_layout)
 
         #layout for a choose button
-
         self.choose_layout = QtWidgets.QVBoxLayout()
         self.choose_layout.setSpacing(1)
         self.choose_layout.setContentsMargins(5, 0, 5, 10)
@@ -342,26 +296,17 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
         self.main_layout.addLayout(self.choose_layout)
 
         self.choose_scripts = QtWidgets.QPushButton("Choose fav scripts")
-        # self.somebtn.setIcon(QtGui.QIcon('C:/Users/admin/Dropbox (Личный)/PROJECTS_ONGOING/Python_For_Maya_Anim/week8/icon.png'))
         self.choose_scripts.clicked.connect(self.runDragNDropWnd)
         self.choose_scripts.setMinimumHeight(40)
         self.choose_layout.addWidget(self.choose_scripts)
 
-        # self.btbtbtb = QtWidgets.QPushButton('lalalala')
-        # # self.btbtbtb.clicked.connect("mel.eval('FreezeTransformationsOptions')")
-        # self.btbtbtb.clicked.connect(cmds.select('pCylinder1'))
-        # self.choose_layout.addWidget(self.btbtbtb)
-
         #layout for scripts buttons
-
         self.buttons_layout = QtWidgets.QVBoxLayout()
         self.buttons_layout.setSpacing(3)
         self.buttons_layout.setContentsMargins(5, 5, 5, 5)
-        # self.main_layout.addLayout(self.buttons_layout)
         self.main_layout.insertLayout(0, self.buttons_layout)
 
         self.line_layout = QtWidgets.QVBoxLayout()
-        # self.line_layout.setSpacing(1)
         self.line_layout.setContentsMargins(5, 5, 5, 0)
         self.main_layout.insertLayout(1, self.line_layout)
 
@@ -376,40 +321,19 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
             self.buttons_layout.itemAt(i).widget().setParent(None)
 
         #create buttons and insert into a layout
-
-        # for script_name, script_data in json_data.items():
-        #     btn = QtWidgets.QPushButton(script_name)
-        #     for command, iconpath in script_data.items():
-        #         btn.clicked.connect(script_data[command])
-        #         btn.setIcon(QtGui.QIcon(iconpath))
-        #         btn.setIconSize(QtCore.QSize(30, 30))
-        #         self.buttons_layout.addWidget(btn)
-        #         print()
-
         for script_name, script_data in json_data.items():
             btn = QtWidgets.QPushButton(script_name)
             for key_commands, value in script_data.items():
-                # print(key_commands)
-                # print('----------')
 
                 if key_commands == 'iconpath':
                     btn.setIcon(QtGui.QIcon(value))
                     btn.setIconSize(QtCore.QSize(35, 35))
 
-
-                # btn.clicked.connect(value_taken[0])
-                # btn.setIcon(QtGui.QIcon(value_taken[1]))
-                # btn.setIconSize(QtCore.QSize(30, 30))
                 self.buttons_layout.addWidget(btn)
 
         self.connect_btn_to_functions()
         self.resize_after_adding_buttons()
         self.add_separator()
-
-    # def command_btn(self, command):
-    #     # mel.eval('FreezeTransformationsOptions')
-    #     # execfile(r'C:\Users\admin\Documents\maya\2020\scripts\SkinMagic\skinMagic.py')
-    #     exec(command)
 
     def connect_btn_to_functions(self):
 
@@ -428,7 +352,6 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
 
     def ng_func(self):
         exec('import ngSkinTools2; ngSkinTools2.open_ui()')
-        # cmds.select('pCylinder1')
 
     def rename_func(self):
         mel.eval('Quick_rename_tool ()')
@@ -445,9 +368,6 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
 
     def resize_after_adding_buttons(self):
         height = 90 + self.buttons_layout.count() * 48
-        # self.setMinimumSize(150, height)
-        # self.resize(250, height)
-        # self.setFixedSize(200, height)
         self.setMinimumSize(130, height)
         self.setFixedHeight(height)
         self.resize(250, height)
@@ -457,14 +377,6 @@ class ChooseWindow(MayaQWidgetDockableMixin, QtWidgets.QDialog):
         line = QtWidgets.QFrame()
         line.setGeometry(QtCore.QRect(60, 110, 751, 20))
         line.setFrameShape(QtWidgets.QFrame.HLine)
-        # line.setContentsMargins(5, 5, 5, 10)
-        # self.line_layout.setContentsMargins(5, 5, 5, 10)
-        # line.setFrameShadow(QtWidgets.QFrame.Sunken)
-        # self.choose_scripts.setContentsMargins(0, 10, 0, 0)
-
-        # self.main_layout.addWidget(line)
-        # self.main_layout.insertWidget(1, line)
-        # self.choose_layout.insertWidget(0, line)
 
         #delete previous widgets
         for i in reversed(range(self.line_layout.count())):
@@ -504,19 +416,6 @@ def main():
     chooseWindow = ChooseWindow()
     chooseWindow.show()
 
-
-
-
-    # chooseWindow.show(dockable=True)
-
-
-
-#---------------------------------------------------------------
-    # myWidget = MyQWidget()
-    # # myWidget.show(dockable=True, floating=False, area='right')
-    # myWidget.show(dockable=True)
-
-#---------------------------------------------------------------
 
 
 if __name__ == "__main__":
