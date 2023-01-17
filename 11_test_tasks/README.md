@@ -48,6 +48,9 @@ The replacement must occur either with copies of objects from the group (the ori
 or by the originals themselves (at the same time, the number of locators and objects must match - you will need to check this).
 Note that locators can either be at the root of the Outliner or in a group.
 
+![4task](https://user-images.githubusercontent.com/108269822/212974300-83797233-547f-4400-afd0-05e05c981154.gif)
+
+
 ---
 
 Task 5. Maya
@@ -58,6 +61,9 @@ Write a script which will position other selected objects (spheres or locators, 
 on the surface of the current object at random positions.
 
 If objects, when placed on the surface, intersect with the surface, this is ok.
+
+![5task](https://user-images.githubusercontent.com/108269822/212974326-01ab3f6e-a9bf-4f00-8010-661584b15271.gif)
+
 
 ---
 
