@@ -96,9 +96,6 @@ class SelectionSetWidget(QtWidgets.QWidget):
 
         self.setup_ui()
 
-
-        # self.super_class.resize(300, self.super_class.height + 30)
-
 #--------------------context menu---------------------------------------
 
         self.popMenu = QtWidgets.QMenu(self)
@@ -127,11 +124,8 @@ class SelectionSetWidget(QtWidgets.QWidget):
 
     def setup_ui(self):
         self.setMinimumSize(260, 40)
-        # self.setMaximumHeight(40)
 
         self.setAutoFillBackground(True)
-
-        #self.set_background()
 
         #layout
         self.main_layout = QtWidgets.QHBoxLayout()
@@ -140,7 +134,6 @@ class SelectionSetWidget(QtWidgets.QWidget):
         #button for a set
         self.set_button = QtWidgets.QPushButton(self.selection_name)
         self.set_button.setObjectName("MyCustomButtonWidgetID")
-        #self.set_button.setMaximumWidth(300)
         self.set_button.setStyleSheet(button2Style)
         self.set_button.clicked.connect(self.set_button_clicked)
         self.main_layout.addWidget(self.set_button)
@@ -150,7 +143,6 @@ class SelectionSetWidget(QtWidgets.QWidget):
         self.rename.setVisible(0)
         self.rename.setObjectName("rename_qline")
         self.rename.setStyleSheet(setLineEditSheet)
-        # self.rename.setAlignment(QtCore.Qt.AlignCenter)
         self.rename.returnPressed.connect(self.set_new_name)
         self.main_layout.addWidget(self.rename)
 
@@ -214,12 +206,6 @@ class SelectionSetWidget(QtWidgets.QWidget):
     def set_button_clicked(self):
         cmds.select(self.selection)
 
-    # def set_background(self, r=60, g=60, b=60):
-    #     self.p = QtGui.QPalette()
-    #     self.color = QtGui.QColor(r, g, b)
-    #     self.p.setColor(self.backgroundRole(), self.color)
-    #     self.setPalette(self.p)
-
 
 class SelectionSetImplementation(QtWidgets.QDockWidget):
     def __init__(self):
@@ -232,18 +218,11 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
 
         self.setup_ui()
 
-        #addin actual buttons
-        # for i in range(20):
-        #     self.obj_widget = SelectionSetWidget()
-        #     self.scroll_layout.addWidget(self.obj_widget)
-
-
 
     def setup_ui(self):
         self.setWindowTitle("Selection Sets")
         self.setObjectName("SelectionSetImplementationUIId")
         self.setMinimumSize(300, 110)
-        # self.setMaximumSize(300, 500)
         self.resize(300, 300)
 
         self.mainWidget = QtWidgets.QWidget()
@@ -257,7 +236,6 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
 
         #scroll area
         self.scroll_area = QtWidgets.QScrollArea()
-        #self.scroll_area.setMaximumHeight(1000)
         self.scroll_area.setMinimumWidth(300)
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -278,13 +256,7 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
         self.scroll_area_widget.setLayout(self.scroll_layout)
         self.main_layout.addWidget(self.scroll_area)
 
-        # self.resize(300, self.size().height() + self.scroll_area.sizeHint().height())
-        # self.resize(300, self.scroll_area.height())
-
-
-#----------------------------------------------------------------------------------
         #addind label and + button for creating a new set
-
         self.add_layout = QtWidgets.QHBoxLayout()
         self.add_layout.setAlignment(QtCore.Qt.AlignTop)
         self.add_layout.setContentsMargins(10, 5, 5, 8)
@@ -294,10 +266,8 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
         self.set_label = QtWidgets.QLineEdit()
         self.set_label.setObjectName("SetName")
         self.set_label.setPlaceholderText("Enter name for a Set")
-        # self.set_label.setFixedWidth(180)
         self.set_label.setMinimumWidth(100)
         self.set_label.setStyleSheet(setLineEditSheet)
-        #self.set_label.setAlignment(QtCore.Qt.AlignCenter)
         self.add_layout.addWidget(self.set_label)
 
         self.plus_button = QtWidgets.QPushButton("+")
@@ -308,9 +278,6 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
         # self.plus_button.setMinimumWidth(50)
         self.add_layout.addWidget(self.plus_button)
 
-        # self.add_layout.addWidget(QtWidgets.QHLine(), 1, 0, 1, 2)
-        # self.add_layout.addWidget(QtWidgets.QFrame.HLine)
-
         self.line = QtWidgets.QFrame()
         self.line.setObjectName("line")
         self.line.setGeometry(QRect(60, 110, 751, 20))
@@ -319,18 +286,6 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
         self.line.setStyleSheet(setLineSheet)
         self.scroll_layout.addWidget(self.line)
 
-# https://tutorialmeta.com/question/how-to-set-color-of-frame-of-qframe
-#         self.color = QtGui.QColor(255, 133, 198)
-#         self.h = HLine()
-#         self.h.setColor(self.color)
-#         self.scroll_layout.addWidget(self.h)
-
-
-
-
-
-
-#----------------------------------------------------------------------------------
 
     def on_button_plus_clicked(self):
         self.get_selection()
@@ -342,18 +297,12 @@ class SelectionSetImplementation(QtWidgets.QDockWidget):
         self.create_new_set()
         self.set_label.clear()
 
-        # if self.height() < self.scroll_layout.height():
-        #     self.resize(self.width(), self.height() + 30)
-
-
     def create_new_set(self):
         self.obj_widget = SelectionSetWidget(selection=self.selection, selection_name=self.set_name)
         self.scroll_layout.addWidget(self.obj_widget)
 
     def get_selection(self):
         self.selection = cmds.ls(sl=1, l=1)
-
-
 
 
 
